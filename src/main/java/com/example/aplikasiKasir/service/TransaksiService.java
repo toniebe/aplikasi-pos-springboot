@@ -20,6 +20,5 @@ public class TransaksiService {
 
     public void addNewTransaksi(Transaksi transaksi){
         transaksiRepository.save(transaksi);
-        System.out.println(transaksi);
     }
 }
