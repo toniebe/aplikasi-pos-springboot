@@ -53,12 +53,19 @@ public class BarangController {
     @PutMapping("/{id}")
     public ResponseEntity<?> putBarang(@PathVariable("id") Long id,@RequestParam String namaBarang,@RequestParam int harga){
         JSONObject jsonObject = new JSONObject();
-        System.out.println(id + " " + namaBarang + " " + harga);
-
         barangService.updateBarang(id,namaBarang,harga);
         jsonObject.put("message","success");
         jsonObject.put("status","200");
         return new ResponseEntity<>(jsonObject, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getBarangId(@PathVariable("id") Long id){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("message","success");
+        jsonObject.put("status","200");
+        jsonObject.put("data",barangService.getBarangById(id));
+        return new ResponseEntity<>(jsonObject,HttpStatus.OK);
     }
 
 }

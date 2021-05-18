@@ -51,4 +51,9 @@ public class BarangService {
         }
     }
 
+    public Optional<Barang> getBarangById(Long id){
+        Optional<Barang> barangs = barangRepository.findById(id);
+        return barangs;
+    }
+
 }
