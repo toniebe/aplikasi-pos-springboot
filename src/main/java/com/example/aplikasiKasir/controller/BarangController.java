@@ -52,7 +52,7 @@ public class BarangController {
                 .path("/v1/barang/downloadFile/")
                 .path(barang.getId().toString())
                 .toUriString();
-        Barang barangUrl = barangService.urlGambar(id,fileDownloadUri);
+        barangService.urlGambar(id,fileDownloadUri);
 
         return new UploadFileResponse(id,barang.getNamaBarang(),barang.getHarga(),barang.getStok(),barang.getUkuran(),fileDownloadUri);
 
@@ -88,7 +88,6 @@ public class BarangController {
         jsonObject.put("message","success");
         jsonObject.put("status","200");
         jsonObject.put("data",barangService.getBarangById(id));
-//        jsonObject.put("gambar", new ByteArrayResource(barang.getData()));
         return new ResponseEntity<>(jsonObject,HttpStatus.OK);
     }
 
@@ -97,7 +96,6 @@ public class BarangController {
         Barang barang = barangService.getBarangById(id);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(barang.getFileType()))
-//                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + barang.getFileName() + "\"")
                 .body(new ByteArrayResource(barang.getData()));
     }
 
