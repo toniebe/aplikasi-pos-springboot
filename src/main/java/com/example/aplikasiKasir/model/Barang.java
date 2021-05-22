@@ -1,5 +1,7 @@
 package com.example.aplikasiKasir.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,22 +24,35 @@ public class Barang {
     private int stok;
     private int ukuran;
 
+    private String fileType;
+    private String urlGambar;
+
+    @JsonIgnore
+    @Lob
+    private byte[] data;
+
     public Barang() {
     }
 
-    public Barang(Long id, String namaBarang, int harga, int stok, int ukuran) {
+    public Barang(Long id, String namaBarang, int harga, int stok, int ukuran, String fileType, String urlGambar, byte[] data) {
         this.id = id;
         this.namaBarang = namaBarang;
         this.harga = harga;
         this.stok = stok;
         this.ukuran = ukuran;
+        this.fileType = fileType;
+        this.urlGambar = urlGambar;
+        this.data = data;
     }
 
-    public Barang(String namaBarang, int harga, int stok, int ukuran) {
+    public Barang(String namaBarang, int harga, int stok, int ukuran, String fileType, String urlGambar, byte[] data) {
         this.namaBarang = namaBarang;
         this.harga = harga;
         this.stok = stok;
         this.ukuran = ukuran;
+        this.fileType = fileType;
+        this.urlGambar = urlGambar;
+        this.data = data;
     }
 
     public Long getId() {
@@ -78,6 +93,30 @@ public class Barang {
 
     public void setUkuran(int ukuran) {
         this.ukuran = ukuran;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public String getUrlGambar() {
+        return urlGambar;
+    }
+
+    public void setUrlGambar(String urlGambar) {
+        this.urlGambar = urlGambar;
     }
 
     @Override
